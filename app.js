@@ -20,6 +20,7 @@ app.get('/posts', async (req, res) => {
   const storedPosts = await getStoredPosts();
   // await new Promise((resolve, reject) => setTimeout(() => resolve(), 1500));
   res.json({ posts: storedPosts });
+  res.status(200);
 });
 
 app.get('/posts/:id', async (req, res) => {
@@ -39,5 +40,6 @@ app.post('/posts', async (req, res) => {
   await storePosts(updatedPosts);
   res.status(201).json({ message: 'Stored new post.', post: newPost });
 });
+
 console.log("Listening on port 8080...")
 app.listen(8080);
