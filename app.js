@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const md5 = require("blueimp-md5");
 
 const { getStoredPosts, storePosts } = require('./data/posts');
 
@@ -34,7 +35,8 @@ app.post('/posts', async (req, res) => {
   const postData = req.body;
   const newPost = {
     ...postData,
-    id: Math.random().toString(),
+    //id: Math.random().toString(),
+    id: md5(req.body.id),
   };
   const updatedPosts = [newPost, ...existingPosts];
   await storePosts(updatedPosts);
