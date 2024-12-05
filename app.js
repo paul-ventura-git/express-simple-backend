@@ -36,7 +36,7 @@ app.post('/posts', async (req, res) => {
   const newPost = {
     ...postData,
     //id: Math.random().toString(),
-    id: md5(req.body.id),
+    id: md5(req.body.body),
   };
   const updatedPosts = [newPost, ...existingPosts];
   await storePosts(updatedPosts);
